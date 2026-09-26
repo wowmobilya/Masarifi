@@ -1,5 +1,0 @@
-node_modules/
-*.log
-__pycache__/
-*_BACKUP_*.json
-*_backup_*.json
