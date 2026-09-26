@@ -1,0 +1,61 @@
+{
+  "version": "7.0.0",
+  "date": "2026-09-26",
+  "changes": {
+    "ar": [
+      "ألوان نهارية نعناعية وزرقاء هادئة مع الحفاظ على لوحة الوضع الليلي.",
+      "شريط سفلي بدائرة بارزة تنتقل بين الأقسام، مع دعم الاتجاهين وتقليل الحركة.",
+      "تخصيص عناصر الرئيسية: تفعيل وإخفاء البطاقات والاختصارات مع حفظ الاختيارات.",
+      "بطاقة صندوق واحدة قابلة للسحب وصفحتان مستقلتان لكل الصناديق وتفاصيل الصندوق.",
+      "حساب مصروف أساسي للعملات فقط، مع أولوية الاختيار الصريح في العملية.",
+      "كشف صندوق مؤرخ وحركات وتحويلات وتصدير من صفحة الحساب.",
+      "ملاحظات بصفحات قراءة وتحرير، عناوين ووسوم وتثبيت وأرشفة وقوائم مهام وصور.",
+      "توسيع المساعد المحلي للمقارنات والملاحظات والبحث والتنقل وتصحيح مسودة المبلغ.",
+      "الاحتفاظ بالقفل والتثبيت والنسخ المحلي وGoogle Drive والتقارير واللغات الخمس."
+    ],
+    "en": [
+      "Gentle mint and blue daylight surfaces while preserving the night palette.",
+      "Raised circular bottom navigation indicator that follows the active section, with RTL and reduced-motion support.",
+      "Choose which home widgets and shortcuts appear; choices stay saved.",
+      "One swipeable cashbox card, a full account directory and dedicated account pages.",
+      "Currency-only primary expense account with explicit transaction choices taking priority.",
+      "Dated account statements, activity, transfers and exports on the account page.",
+      "Full-page notes with titles, tags, pinning, archive, checklists, photos and session drafts.",
+      "Broader local assistant for comparisons, notes, search, navigation and draft amount corrections.",
+      "Existing PIN, installation, local/Google Drive backups, reports and all five languages retained."
+    ],
+    "tr": [
+      "Gece paleti korunarak gündüz görünümüne yumuşak nane ve mavi tonlar eklendi.",
+      "Etkin bölümü izleyen yükseltilmiş dairesel alt gezinme göstergesi; RTL ve azaltılmış hareket desteği.",
+      "Ana ekrandaki kartları ve kısayolları seçin; tercihleriniz kaydedilir.",
+      "Kaydırılabilir tek kasa kartı, tüm kasalar dizini ve ayrı hesap sayfaları.",
+      "Yalnızca para birimleri için birincil gider hesabı; açık işlem seçimleri önceliklidir.",
+      "Hesap sayfasında tarihli ekstreler, hareketler, transferler ve dışa aktarma.",
+      "Başlık, etiket, sabitleme, arşiv, kontrol listesi, fotoğraf ve oturum taslaklarıyla tam sayfa notlar.",
+      "Karşılaştırma, not, arama, gezinme ve taslak tutarı düzeltme için genişletilmiş yerel yardımcı.",
+      "PIN, yükleme, yerel/Google Drive yedekleri, raporlar ve beş dil korundu."
+    ],
+    "fr": [
+      "Surfaces diurnes douces, menthe et bleu, sans modifier la palette nocturne.",
+      "Indicateur circulaire surélevé suivant la section active, avec prise en charge RTL et mouvements réduits.",
+      "Choisissez les éléments et raccourcis visibles à l’accueil ; vos choix sont conservés.",
+      "Une carte de caisse à faire défiler, une liste complète et des pages de compte dédiées.",
+      "Compte principal des dépenses réservé aux devises, avec priorité aux choix explicites de chaque opération.",
+      "Relevés datés, mouvements, transferts et exportations sur la page du compte.",
+      "Notes en pleine page avec titres, étiquettes, épinglage, archivage, tâches, photos et brouillons de session.",
+      "Assistant local élargi aux comparaisons, notes, recherches, navigation et corrections de montants en brouillon.",
+      "Code PIN, installation, sauvegardes locales/Google Drive, rapports et cinq langues conservés."
+    ],
+    "ku": [
+      "Rengên nerm ên nane û şîn ji bo rojê, bi parastina paleta şevê.",
+      "Nîşandera girover a bilind li jêr beşa çalak dişopîne; piştgiriya RTL û tevgera kêm.",
+      "Tişt û kurtebirên rûpela sereke hilbijêre; vebijêrkên te tên parastin.",
+      "Karteke sindoqê ya kişandbar, lîsteya hemû hesaban û rûpelên taybet.",
+      "Hesabê sereke yê lêçûnan tenê ji bo pereyan; hilbijartina eşkere ya danûstandinê pêşî ye.",
+      "Daxuyaniyên hesabê bi dîrok, tevger, veguhestin û derxistin li rûpela hesabê.",
+      "Notên rûpela tevahî bi sernav, etîket, sabîtkirin, arşîv, lîsteya karan, wêne û pêşnivîsên danişînê.",
+      "Alîkarê herêmî ji bo hevberkirin, not, lêgerîn, gerîn û rastkirina mîqdara pêşnivîsê firehtir bû.",
+      "PIN, sazkirin, yedekên herêmî/Google Drive, rapor û her pênc ziman hatin parastin."
+    ]
+  }
+}
