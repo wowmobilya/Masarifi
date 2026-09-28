@@ -1,6 +1,0 @@
-Masarifi V5 builds upon the user-supplied WOW Expenses V4 application.
-Original application credits retained: WOW Mobilya; review Hasan Al-Halou; original development Eng. Al-Mutaz Billah Haj Shaaban.
-The user supplied the brand image through https://chatgpt.com/s/m_6ab67083e29481919e4759dba635c1c2 . Icons are resized copies, not redesigned imagery.
-JSZip v3.10.1 is included locally in assets/jszip.min.js. Copyright (c) 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso. Distributed under MIT or GPLv3; original license banner remains in the file. https://github.com/Stuk/jszip
-Rates are retrieved through Frankfurter from the selected official provider. Provider rate-data terms apply. https://frankfurter.dev/
-French and Kurmanji translations have not received professional native-speaker review.
