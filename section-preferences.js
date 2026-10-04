@@ -514,9 +514,9 @@ v85SectionAutomaticBackup|النسخ والمزامنة التلقائيان ا�
     const data=new root.FormData(form),submittedFingerprint=root.MasarifiInteraction?.fingerprint?.(form),controls=Array.from(form.elements||[]).map(el=>[el,el.disabled]);
     const still=()=>!A.locked&&epoch===generation&&who===identity()&&form.isConnected&&A.page==='settings'&&V6.settingsSection==='sections'&&doc.getElementById('v85SectionNames')===form;
     button.disabled=true;form.dataset.busy='1';form.setAttribute('aria-busy','true');for(const [el]of controls)el.disabled=true;form.querySelector('.form-error').textContent='';
-    (async()=>{try{const sectionNames=names(Object.fromEntries(ids.map(id=>[id,data.get(id)||''])));if(await writePreferences({...A.prefs,sectionNames},{epoch})&&still()){
-     if(!submittedFingerprint||root.MasarifiInteraction.fingerprint(form)===submittedFingerprint){root.MasarifiInteraction?.markSaved?.(form);A.invalidateReport();A.render();}A.toast(root.tr('saved'));
-    }}catch(error){if(still())A.error(error,form.querySelector('.form-error'));}finally{for(const [el,disabled]of controls)el.disabled=disabled;delete form.dataset.busy;form.removeAttribute('aria-busy');button.disabled=false;}})();return;
+    (async()=>{let saved=false;try{const sectionNames=names(Object.fromEntries(ids.map(id=>[id,data.get(id)||''])));if(await writePreferences({...A.prefs,sectionNames},{epoch})&&still()){
+     root.MasarifiInteraction?.markSaved?.(form,submittedFingerprint);if(!submittedFingerprint||root.MasarifiInteraction.fingerprint(form)===submittedFingerprint){A.invalidateReport();saved=true;}A.toast(root.tr('saved'));
+    }}catch(error){if(still())A.error(error,form.querySelector('.form-error'));}finally{for(const [el,disabled]of controls)el.disabled=disabled;delete form.dataset.busy;form.removeAttribute('aria-busy');button.disabled=false;}if(saved&&still())await V6.settingsSaveComplete?.();})().catch(error=>{if(still())A.error(error,form.querySelector('.form-error'));});return;
    }
    const section=form.elements?.namedItem?.('section');
    if(available()&&section&&ids.includes(section.value)&&!allowed(section.value)){event.preventDefault();event.stopImmediatePropagation();A.error(Error(section.value!==active()?'v85SectionScope':'v85SectionLocked'),form.querySelector('.form-error'));}
@@ -528,3 +528,4 @@ v85SectionAutomaticBackup|النسخ والمزامنة التلقائيان ا�
  }
  return {ids,normalizePIN,validPIN,cleanName,names,credential,locks,signature,derivePIN,checkPIN,install};
 });
+

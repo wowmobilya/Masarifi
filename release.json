@@ -1,31 +1,47 @@
 {
-  "version": "8.7.0",
+  "version": "8.7.1",
   "date": "2026-10-04",
   "changes": {
     "ar": [
-      "إصلاح شريط الحفظ على التابلت والهاتف، وتوحيد أزرار الرأس، وضبط شهر الميزانية وحالة الصندوق الفارغ.",
-      "واجهة مدمجة، ملخصات مالية بحسب الصندوق والعملة والفترة، ومحوّل عملات واضح.",
-      "أقسام مستقلة مع حفظ البيانات السابقة ونسخ احتياطي ومزامنة تحافظ على الفصل.",
-      "تصنيفات وأيقونات موسعة، إعدادات متجاوبة، وحالة اشتراك أوضح."
-    ],
-    "tr": [
-      "Tablet/telefon kaydetme çubuğu, başlık dokunma alanları, ay seçici taşması ve boş kasa uyarısı düzeltildi.",
-      "Kompakt arayüz, kasa/para birimi/dönem kapsamlı özetler ve açık kur dönüştürücü.",
-      "Önceki verileri koruyan bağımsız bölümler, kapsamlı yedekleme ve eşitleme.",
-      "Genişletilmiş kategoriler ve simgeler, uyumlu ayarlar ve açık abonelik durumu."
+      "واجهة متجاوبة بالأسود والفضي الداكن، وشريط تنقل ثابت أسفل الشاشة.",
+      "ترتيب أوضح للإعدادات والأقسام؛ الحفظ والرجوع يعيدانك إلى موضعك السابق.",
+      "عناصر رئيسية قابلة للطي، مع بقاء الإضافة السريعة ظاهرة وإخفاء محلي للمبالغ والرسوم.",
+      "مساعد مالي محلي موجه، وأرقام 0–9 عبر اللغات الأربع، وباقات وتفعيل أوضح.",
+      "تصحيح قراءة المبالغ، وفصل عمليات الأقسام، وحماية تكرار الإيصالات بعد الاستعادة، وتسريع الأقساط.",
+      "تحديثات تتحقق من هوية البناء وتحمي المسودات دون تكرار إشعار البناء نفسه.",
+      "قراءة صورة الإيصال محليًا بالعربية والتركية والإنجليزية والفرنسية، مع مراجعة يدوية قبل التسجيل.",
+      "ترحيب حسب وقت الجهاز وصفحة كاملة لرمز مشاركة التطبيق وكود المستخدم العام."
     ],
     "en": [
-      "Fix tablet/phone save-bar layout, normalize header touch targets, contain the month picker and remove the false empty-cashbox warning.",
-      "Compact interface, cashbox/currency/date-scoped summaries and clear reference conversion.",
-      "Independent sections with preserved previous data, scoped backup and sync.",
-      "Expanded categories and icons, responsive settings and clearer subscription status."
+      "Responsive black and dark-silver surfaces with an edge-to-edge bottom navigation bar.",
+      "Clearer settings and section management; successful saves and Back restore the previous location.",
+      "Collapsible home widgets keep Quick Add visible; local amount privacy also hides chart output.",
+      "Guided local financial assistant, 0–9 digits across four languages, and clearer plans and activation.",
+      "Corrected amount parsing, section-scoped operations, restored receipt duplicate protection and faster installment summaries.",
+      "Build-verified updates protect drafts and avoid repeat notifications for the same build.",
+      "Read receipt images locally in Arabic, Turkish, English and French, with manual review before saving.",
+      "Device-time greetings and a full page for app sharing and the public user code."
+    ],
+    "tr": [
+      "Siyah ve koyu gümüş uyumlu arayüz; ekran kenarına oturan alt gezinme çubuğu.",
+      "Daha açık ayarlar ve bölüm yönetimi; başarılı kayıt ve Geri önceki konumu korur.",
+      "Katlanabilir ana ekran bileşenleri, sürekli görünür Hızlı Ekle ve grafikleri de gizleyen yerel tutar gizliliği.",
+      "Yönlendirmeli yerel finans asistanı, dört dilde 0–9 rakamları, daha açık paketler ve etkinleştirme.",
+      "Tutar ayrıştırma, bölüm kapsamlı işlemler, geri yüklenen fişlerin tekrar koruması ve taksit özeti performansı düzeltildi.",
+      "Yapı kimliği doğrulanan güncellemeler taslakları korur; aynı yapı için bildirim tekrarlanmaz.",
+      "Fiş görsellerini Arapça, Türkçe, İngilizce ve Fransızca yerel olarak okuyun; kaydetmeden önce elle inceleyin.",
+      "Cihaz saatine göre karşılama ve uygulama paylaşımı ile genel kullanıcı kodu için tam sayfa."
     ],
     "fr": [
-      "Correction de la barre d’enregistrement, des cibles tactiles, du sélecteur de mois et de l’alerte de caisse vide.",
-      "Interface compacte, synthèses par caisse/devise/période et conversion indicative claire.",
-      "Sections indépendantes avec conservation des données précédentes, sauvegarde et synchronisation séparées.",
-      "Catégories et icônes enrichies, réglages adaptatifs et abonnement plus clair."
+      "Interface adaptative noire et argent foncé, avec navigation alignée au bas de l’écran.",
+      "Réglages et sections mieux organisés ; enregistrement réussi et Retour retrouvent la position précédente.",
+      "Blocs d’accueil repliables, Ajout rapide toujours visible et masquage local des montants et graphiques.",
+      "Assistant financier local guidé, chiffres 0–9 dans les quatre langues, offres et activation plus claires.",
+      "Correction des montants, des opérations par section, de la détection des reçus restaurés et accélération des échéanciers.",
+      "Mises à jour vérifiées par identité de build, protection des brouillons et absence de notifications répétées pour le même build.",
+      "Lecture locale des reçus en arabe, turc, anglais et français, avec vérification manuelle avant enregistrement.",
+      "Accueil selon l’heure de l’appareil et page dédiée au partage de l’application et au code utilisateur public."
     ]
   },
-  "build": "20261004-ui1"
+  "buildId": "28522c354f47637ba1896d756f3b80fca325c944a81cf44c847585ce16a16c86"
 }

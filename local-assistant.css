@@ -1,0 +1,40 @@
+/* Compact black / dark-silver assistant; inherits the app's accessible theme tokens. */
+.local-assistant{max-width:880px;margin-inline:auto;gap:14px!important;overflow:hidden}
+.local-assistant-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.local-assistant-header h2{margin:6px 0 0;font-size:clamp(1.15rem,3vw,1.5rem);line-height:1.4}
+.local-assistant-badge,.local-assistant-scope{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;border:1px solid var(--line,#44464c);border-radius:999px;padding:5px 9px;color:var(--muted,#aaaeb7);background:var(--surface2,var(--panel,#191b20));max-width:100%;overflow-wrap:anywhere}
+.local-assistant-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.local-assistant-intro{font-size:.94rem;line-height:1.75;margin:0}
+.local-assistant .hint{margin:0;line-height:1.7}
+.local-assistant-steps{padding:9px 11px;border-inline-start:2px solid var(--line,#626670);background:var(--surface2,rgba(130,135,145,.07));border-radius:7px}
+.local-assistant-examples{display:flex;flex-wrap:wrap;gap:7px}
+.local-assistant-examples button{min-height:36px;padding:7px 11px;font-size:.82rem;border-radius:10px;text-align:start;white-space:normal}
+.local-assistant .v6-assistant-compose{display:grid;gap:9px;margin:0}
+.local-assistant .v6-assistant-compose>label{font-weight:650}
+.local-assistant textarea{width:100%;resize:vertical;min-height:92px;max-height:240px;font-size:1rem;line-height:1.7}
+.local-assistant .v6-assistant-controls{display:flex;flex-wrap:wrap;gap:7px}
+.local-assistant .v6-assistant-controls button{min-height:42px;flex:0 1 auto}
+.local-assistant .v6-assistant-controls button[type=submit]{margin-inline-start:auto}
+.local-assistant-voice-options{max-width:100%;border:0!important;padding:0!important}
+.local-assistant-voice-options summary{font-size:.8rem;color:var(--muted,#aaaeb7);cursor:pointer}
+.local-assistant-voice-options[open]{display:grid;gap:8px}
+.local-assistant-voice-options select{max-width:240px}
+.local-assistant .local-voice-disclosure{font-size:.73rem}
+.local-assistant-result,.local-assistant-draft{padding:15px;border:1px solid var(--line,#44464c);border-radius:14px;background:var(--surface2,rgba(130,135,145,.07));animation:local-assistant-in .18s ease-out}
+.local-assistant-result h3,.local-assistant-draft h3{font-size:.95rem;margin:0 0 8px;line-height:1.5}
+.local-assistant-result p{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;line-height:1.9;font-size:.88rem;font-variant-numeric:tabular-nums}
+.local-assistant-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:13px 0}
+.local-assistant-fields label{display:grid;gap:6px;font-size:.82rem;min-width:0}
+.local-assistant-fields input,.local-assistant-fields select{width:100%;min-width:0;min-height:44px}
+.local-assistant-draft .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.local-assistant-draft .row button{white-space:normal;min-height:42px}
+.local-assistant-history,.local-assistant-cloud{border-top:1px solid var(--line,#44464c);padding-top:11px}
+.local-assistant-history summary,.local-assistant-cloud summary{cursor:pointer;font-size:.83rem;line-height:1.6}
+.local-assistant-history .chat{max-height:300px;margin:10px 0;overscroll-behavior:contain}
+.local-assistant-history .row button{font-size:.75rem;padding:6px 9px;min-height:36px}
+.local-assistant-cloud summary>span{margin-inline-start:8px;font-size:.72rem;color:var(--muted,#aaaeb7)}
+.local-assistant-cloud[open] p{margin-top:10px}
+.local-assistant [hidden]{display:none!important}
+@keyframes local-assistant-in{from{opacity:.7;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media(max-width:480px){.local-assistant{padding:14px!important;gap:12px!important}.local-assistant-header{gap:9px}.local-assistant-fields{grid-template-columns:1fr}.local-assistant .v6-assistant-controls button[type=submit]{margin-inline-start:0;flex:1 1 100%}.local-assistant-examples button{flex:1 1 calc(50% - 7px)}.local-assistant-draft,.local-assistant-result{padding:11px}.local-assistant-draft .row>button{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){.local-assistant *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

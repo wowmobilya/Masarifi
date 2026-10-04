@@ -1,0 +1,60 @@
+/* Compact, user-controlled home presentation. No continuous animations. */
+body[data-home=true] .workspace{padding-block-start:calc(var(--chrome-header-height,var(--app-header-height)) + 10px)}
+.home-heading .v20-home-share{gap:8px!important}
+.home-privacy-button{display:inline-grid;place-items:center;inline-size:44px;block-size:44px;flex:none;min-width:44px;min-height:44px;padding:10px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--text)}
+.home-privacy-button svg{inline-size:21px;block-size:21px}
+.home-privacy-button[aria-pressed=true]{background:var(--accent-soft)}
+.home-fold{min-inline-size:0;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:12px;overflow:clip}
+.home-fold>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;cursor:pointer;font-size:.9rem;font-weight:700;color:var(--text)}
+.home-fold>summary::-webkit-details-marker{display:none}
+.home-fold>summary>span:first-child{min-inline-size:0;overflow-wrap:anywhere}
+.home-fold-chevron{display:inline-block;flex:none;inline-size:24px;text-align:center;font-size:1.1rem;transition:transform .16s ease}
+.home-fold[open]>summary .home-fold-chevron{transform:rotate(180deg)}
+.home-fold[open]>summary{margin-block-end:10px}
+.home-fold-body{min-inline-size:0}
+.home-fold-body>.panel,.home-fold-body>.assistant-invite{border:0;box-shadow:none;border-radius:0;padding:0;background:transparent}
+.home-fold-repeated-title{position:absolute!important;inline-size:1px!important;block-size:1px!important;overflow:hidden!important;clip-path:inset(50%);white-space:nowrap!important;margin:-1px!important;padding:0!important}
+.home-fold.home-overview{padding:12px!important;border-radius:16px!important}
+.home-fold .home-overview-heading{justify-content:flex-end;min-height:0;margin-block-end:8px!important}
+.home-fold .home-overview-heading>div{display:none}
+.home-overview .home-overview-card-body{min-height:84px!important;padding:10px!important}
+.home-overview .home-overview-card-top{font-size:.76rem!important;line-height:1.45}
+.home-overview .home-overview-value{font-size:clamp(1rem,3.6vw,1.3rem)!important;margin:5px 0 3px!important}
+.home-overview .home-overview-mark{display:none!important}
+.home-overview .home-overview-card::before,.home-overview .home-overview-card::after{display:none!important}
+.home-overview .home-overview-card-caption{font-size:.66rem!important;line-height:1.5}
+.home-overview .home-overview-scope{font-size:.72rem;margin-block-end:8px!important}
+.home-overview .home-overview-basis{font-size:.66rem;line-height:1.55;margin-block-start:8px!important}
+.home-overview .home-overview-help{font-size:.74rem;margin-block-start:8px!important}
+.home-privacy-note{padding:18px;margin:0;text-align:center;background:var(--panel2);border-radius:12px;color:var(--muted)}
+body[data-home-privacy=true] .home-stack :is(canvas,.chart-tooltip,[role=tooltip],.category-spend-track,[role=progressbar]){display:none!important}
+.category-quick{min-inline-size:0}
+.home-fx.rates-strip{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;min-inline-size:0;padding:0;border:0;border-radius:0;background:transparent}
+.home-fx-heading{display:flex!important;align-items:center;gap:8px}
+.home-fx-heading .rate-icon{display:grid;place-items:center;inline-size:28px;block-size:28px;color:var(--muted)}
+.home-fx-heading .rate-icon svg{inline-size:20px;block-size:20px}
+.home-fx-heading h2{font-size:.87rem;line-height:1.5;margin:0}
+.home-fx-quote{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.5fr);align-items:center;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.home-fx-quote>*{min-inline-size:0;overflow-wrap:anywhere}
+.home-fx-quote strong{font-size:1.1rem;line-height:1.45;text-align:end;font-variant-numeric:tabular-nums}
+.home-fx-source,.home-fx-status{font-size:.72rem;line-height:1.6;color:var(--muted);margin:0;overflow-wrap:anywhere}
+.home-fx-status.is-warning{color:var(--expense)}
+.home-fx-open{min-height:44px!important;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.8rem!important;background:var(--panel);color:var(--text)}
+.home-fx-open svg{inline-size:17px;block-size:17px;flex:none}
+html[dir=rtl] .home-fx-open svg{transform:rotate(180deg)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .home-privacy-button,.home-fx-open{transition:background-color .16s ease,transform .16s ease}
+ .home-privacy-button:hover,.home-fx-open:hover{transform:translateY(-1px)}
+}
+@media(prefers-reduced-motion:reduce){.home-fold-chevron,.home-privacy-button,.home-fx-open{transition:none!important;transform:none!important}}
+.home-fold:has(>.home-fold-body>#homeInstall:empty){display:none}
+@keyframes home-fold-enter{from{opacity:.45;transform:translateY(-3px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){html[data-home-motion=on] .home-fold[data-user-toggled=true][open]>.home-fold-body{animation:home-fold-enter .16s ease-out both}}
+html[data-home-motion=off] :is(.home-fold-body,.home-fold-chevron,.home-privacy-button,.home-fx-open){animation:none!important;transition:none!important;transform:none!important}
+.home-heading h1{font-size:clamp(1.03rem,3.2vw,1.2rem)!important;line-height:1.5!important;margin-block:3px!important}
+.home-heading .home-greeting-note{display:block!important;font-size:.74rem;line-height:1.5;color:var(--muted);margin:3px 0 0}
+.home-greeting-clock{display:inline-grid;place-items:center;inline-size:20px;block-size:20px;font-size:1rem;color:var(--muted);flex:none}
+.home-heading .v20-home-share .v20-home-qr{inline-size:64px!important;min-width:64px!important;width:64px!important;block-size:64px!important;height:64px!important;padding:4px!important;background:#fff!important;color:#000!important}
+.home-heading .v20-home-share .v20-home-qr>svg{inline-size:100%!important;block-size:100%!important;max-inline-size:100%;max-block-size:100%}
+body[data-home=true] #header .brand-logo{display:block;inline-size:28px;block-size:28px;flex:none}
+@media(max-width:360px){.home-heading .v20-home-share .v20-home-qr{inline-size:56px!important;min-width:56px!important;width:56px!important;block-size:56px!important;height:56px!important}.home-heading .v20-home-share{gap:6px!important}}

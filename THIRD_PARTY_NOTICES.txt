@@ -10,3 +10,15 @@ V7.4.1 bundled online dependencies:
 qrcode-generator 1.4.4 — Kazuhiko Arase, MIT; see licenses/qrcode-generator.txt and preserved source notice.
 jsQR 1.4.0 — Apache-2.0; see licenses/jsqr.txt.
 Only deployed assets and required license notices are included; development files are excluded.
+
+Optional browser-local receipt OCR (loaded on explicit receipt reading only):
+Tesseract.js 6.0.1 - Apache-2.0
+https://github.com/naptha/tesseract.js/tree/v6.0.1
+Tesseract.js-core 6.0.0 - Apache-2.0
+https://github.com/naptha/tesseract.js-core
+Tesseract language data eng/tur/fra/ara, @tesseract.js-data packages 1.0.0 - Apache-2.0
+https://github.com/naptha/tessdata
+Downloaded from jsDelivr; pinned URLs and primary-script SRI are in receipt-ocr-engine.js.
+The OCR image and resulting text are processed on the device, not sent to an OCR service.
+The first engine/model download needs Internet; browser HTTP/IndexedDB caches may be evicted.
+Worker/core/model resources are optional and are not part of the offline shell integrity manifest.

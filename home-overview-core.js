@@ -7,7 +7,7 @@ const plus=(a,b)=>rational(a.n*b.d+b.n*a.d,a.d*b.d);
 const round=q=>{const negative=q.n<0n,n=negative?-q.n:q.n;const result=(2n*n+q.d)/(2n*q.d);return negative?-result:result;};
 function context(){const C=deps.Core,B=deps.Bank,I=deps.InstallmentCore;if(!C||!B)throw Error('overviewUnavailable');return{C,B,I};}
 function fixed(amount,currency){const{C}=context(),d=C.digits(currency),n=BigInt(amount),s=(n<0n?-n:n).toString().padStart(d+1,'0');return(n<0n?'-':'')+(d?s.slice(0,-d)+'.'+s.slice(-d):s);}
-function money(amount,currency,language='en'){const{C}=context(),d=C.digits(currency),n=BigInt(amount),abs=n<0n?-n:n,scale=10n**BigInt(d),lang=language==='ar'?'ar-u-nu-arab':['tr','en','fr'].includes(language)?language:'en';const whole=new Intl.NumberFormat(lang,{maximumFractionDigits:0}).format(abs/scale);let tail='';if(d){const separator=new Intl.NumberFormat(lang).formatToParts(1.1).find(p=>p.type==='decimal')?.value||'.';tail=separator+new Intl.NumberFormat(lang,{useGrouping:false,minimumIntegerDigits:d,maximumFractionDigits:0}).format(abs%scale);}const unit=deps.Bank.metals[currency]?.unit;return(n<0n?'−':'')+whole+tail+' '+(unit?unit+' · ':'')+currency;}
+function money(amount,currency,language='en'){const{C}=context(),d=C.digits(currency),n=BigInt(amount),abs=n<0n?-n:n,scale=10n**BigInt(d),lang=language==='ar'?'ar-u-nu-latn':['tr','en','fr'].includes(language)?language:'en';const whole=new Intl.NumberFormat(lang,{maximumFractionDigits:0,numberingSystem:'latn'}).format(abs/scale);let tail='';if(d){const separator=new Intl.NumberFormat(lang,{numberingSystem:'latn'}).formatToParts(1.1).find(p=>p.type==='decimal')?.value||'.';tail=separator+new Intl.NumberFormat(lang,{useGrouping:false,minimumIntegerDigits:d,maximumFractionDigits:0,numberingSystem:'latn'}).format(abs%scale);}const unit=deps.Bank.metals[currency]?.unit;return(n<0n?'−':'')+whole+tail+' '+(unit?unit+' · ':'')+currency;}
 function confirmed(r){return!!r&&!r.deleted&&!r.pending&&!r._pending&&r.confirmed!==false&&!BLOCKED.has(r.status);}
 function principal(r){return['transfer_in','transfer_out','transfer_marker','transferIn','transferOut'].includes(r._kind||r.entryKind||'');}
 function rowKey(r){const fee=r.entryKind==='fee'||r._kind==='fee'||r.synthetic&&r.transferId;const id=String(r.id||'');return fee&&r.transferId?'fee:'+r.transferId:id?'transaction:'+id:'';}
@@ -42,3 +42,4 @@ function summarize(input={},options={}){
 }
 return{create:next=>factory(next),summarize,fixed,money,confirmed};
 });
+
