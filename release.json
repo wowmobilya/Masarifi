@@ -3,24 +3,29 @@
   "date": "2026-10-04",
   "changes": {
     "ar": [
+      "إصلاح شريط الحفظ على التابلت والهاتف، وتوحيد أزرار الرأس، وضبط شهر الميزانية وحالة الصندوق الفارغ.",
       "واجهة مدمجة، ملخصات مالية بحسب الصندوق والعملة والفترة، ومحوّل عملات واضح.",
       "أقسام مستقلة مع حفظ البيانات السابقة ونسخ احتياطي ومزامنة تحافظ على الفصل.",
       "تصنيفات وأيقونات موسعة، إعدادات متجاوبة، وحالة اشتراك أوضح."
     ],
     "tr": [
+      "Tablet/telefon kaydetme çubuğu, başlık dokunma alanları, ay seçici taşması ve boş kasa uyarısı düzeltildi.",
       "Kompakt arayüz, kasa/para birimi/dönem kapsamlı özetler ve açık kur dönüştürücü.",
       "Önceki verileri koruyan bağımsız bölümler, kapsamlı yedekleme ve eşitleme.",
       "Genişletilmiş kategoriler ve simgeler, uyumlu ayarlar ve açık abonelik durumu."
     ],
     "en": [
+      "Fix tablet/phone save-bar layout, normalize header touch targets, contain the month picker and remove the false empty-cashbox warning.",
       "Compact interface, cashbox/currency/date-scoped summaries and clear reference conversion.",
       "Independent sections with preserved previous data, scoped backup and sync.",
       "Expanded categories and icons, responsive settings and clearer subscription status."
     ],
     "fr": [
+      "Correction de la barre d’enregistrement, des cibles tactiles, du sélecteur de mois et de l’alerte de caisse vide.",
       "Interface compacte, synthèses par caisse/devise/période et conversion indicative claire.",
       "Sections indépendantes avec conservation des données précédentes, sauvegarde et synchronisation séparées.",
       "Catégories et icônes enrichies, réglages adaptatifs et abonnement plus clair."
     ]
-  }
+  },
+  "build": "20261004-ui1"
 }
