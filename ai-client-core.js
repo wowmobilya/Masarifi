@@ -6,5 +6,8 @@
  function draft(value,currencies,precision){if(!value||!['expense','income'].includes(value.kind)||!currencies.includes(value.currency))return null;if(!safe(value.amount_minor)||value.amount_minor<=0||!Number.isInteger(precision)||precision<0||precision>8||typeof value.description!=='string'||!value.description.trim()||value.description.length>200||value.date!==null&&value.date!==undefined&&!day(value.date))fail();const n=String(value.amount_minor).padStart(precision+1,'0'),amount=precision?n.slice(0,-precision)+'.'+n.slice(-precision):n;return{type:value.kind,currency:value.currency,amount,description:value.description.trim(),date:value.date||null};}
  function answer(result){if(result?.ok!==true||typeof result.answer!=='string'||!result.answer.trim()||result.answer.length>12000)fail();return result.answer;}
  function gate(){let epoch=0;return{start(identity){return{epoch:++epoch,identity};},cancel(){epoch++;},current(ticket,identity){return ticket?.epoch===epoch&&ticket.identity===identity;}};}
- return{context,draft,answer,gate,validDay:day};
+ // A missing optional deployment is not an authentication error. Back off without
+ // persisting credentials or preventing a later deployment from being discovered.
+ function availability(now=Date.now,delay=300000){const absent=new Map();return{available(endpoint){return (absent.get(endpoint)||0)<=now();},observe(endpoint,status){if(status===404||status===410)absent.set(endpoint,now()+delay);else if(status>=200&&status<300)absent.delete(endpoint);}};}
+ return{context,draft,answer,gate,availability,validDay:day};
 });

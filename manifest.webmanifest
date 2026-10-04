@@ -5,7 +5,7 @@
   "description": "مصروفاتك وصناديقك وتقاريرك، متاحة دون اتصال.",
   "lang": "ar",
   "dir": "rtl",
-  "start_url": "./?lang=ar",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",

@@ -5,7 +5,7 @@
   "description": "Giderleriniz, kasalarınız ve raporlarınız. Çevrimdışı kullanılabilir.",
   "lang": "tr",
   "dir": "ltr",
-  "start_url": "./?lang=tr",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",

@@ -5,7 +5,7 @@
   "description": "Vos dépenses, vos caisses et vos rapports. Disponible hors ligne.",
   "lang": "fr",
   "dir": "ltr",
-  "start_url": "./?lang=fr",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
