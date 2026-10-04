@@ -1,0 +1,66 @@
+/* Compact settings retain existing cards, destinations and profile controls. */
+#content.v85-settings .page-heading{margin-block-end:1rem}
+#content.v85-settings .v17-settings{max-width:1120px;margin-inline:auto}
+#content.v85-settings .settings-profile{margin-block-end:1rem;max-width:none}
+#content.v85-settings .settings-profile>button{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:.75rem;padding:.85rem 1rem;min-height:74px;border-radius:16px}
+#content.v85-settings .settings-profile .avatar.large{grid-row:1/3;inline-size:44px;block-size:44px}
+#content.v85-settings .settings-profile strong{grid-column:2;align-self:end;font-size:1rem;line-height:1.4;overflow-wrap:anywhere}
+#content.v85-settings .settings-profile small{grid-column:2;align-self:start;margin:0;font-size:.73rem;display:flex;align-items:center;gap:.35rem}
+#content.v85-settings .settings-profile small>.icon{inline-size:14px;block-size:14px}
+#content.v85-settings .v17-settings-grid{gap:1rem;align-items:start}
+#content.v85-settings .v17-settings-group{padding:0;min-inline-size:0}
+#content.v85-settings .v17-settings-group>h2{font-size:.77rem;letter-spacing:0;margin-block:0 .55rem;color:var(--muted)}
+#content.v85-settings .settings-menu{gap:.55rem;max-width:none}
+#content.v85-settings .settings-link{padding:.8rem .9rem;gap:.75rem;border-radius:14px;min-height:72px}
+#content.v85-settings .settings-icon{inline-size:35px;block-size:35px;border-radius:11px}
+#content.v85-settings .settings-icon>.icon{inline-size:19px;block-size:19px}
+#content.v85-settings .settings-link strong{font-size:.83rem;line-height:1.4;overflow-wrap:anywhere}
+#content.v85-settings .settings-link small{font-size:.7rem;line-height:1.45;margin-block-start:.22rem}
+#content.v85-settings .settings-form{max-inline-size:820px;gap:1rem}
+#content.v85-settings .profile-editor{gap:.85rem;min-height:0;align-items:center}
+#content.v85-settings .profile-editor .avatar.large{inline-size:52px;block-size:52px}
+#content.v85-settings .profile-editor h2{font-size:1.05rem;margin:0}
+#content.v85-settings.v85-profile-empty .profile-editor>.avatar{display:none}
+#content.v85-settings .profile-editor .row{margin-block-start:.45rem}
+#content.v85-settings .settings-stack>.panel{min-height:0}
+.v85-section-settings{max-inline-size:820px;margin-inline:auto}
+.v85-section-settings>form{inline-size:100%}
+.v85-section-pin-list{display:grid;gap:.75rem}
+.v85-section-pin-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.75rem;border-block-end:1px solid var(--line)}
+.v85-section-pin-row:last-child{border-block-end:0}
+.v85-section-pin-row>span{min-inline-size:0}
+.v85-section-pin-row strong{display:block;font-size:.95rem;overflow-wrap:anywhere}
+.v85-section-pin-row small{display:block;color:var(--muted);font-size:.75rem;margin-block-start:.25rem}
+.v85-section-pin-row .row{justify-content:flex-end;gap:.5rem}
+.v85-section-security-note{font-size:.76rem;line-height:1.7}
+.v85-section-switch{max-inline-size:100%;flex-wrap:wrap;white-space:normal}
+.v85-section-switch button{max-inline-size:100%;overflow-wrap:anywhere;white-space:normal}
+.v85-section-switch button[data-section-action="lock"]{padding-inline:.55rem;min-inline-size:38px}
+.v85-section-switch button[data-section-action="lock"]>.icon{inline-size:16px;block-size:16px}
+.v85-section-gate{max-inline-size:680px;margin:1.25rem auto;text-align:center;align-items:center;padding:2rem 1.25rem}
+.v85-section-gate h2{overflow-wrap:anywhere;max-inline-size:100%}
+.v85-section-gate>.row{justify-content:center}
+.v85-section-lock-mark{display:grid;place-items:center;inline-size:48px;block-size:48px;border-radius:16px;background:var(--accent-soft);color:var(--accent);margin-inline:auto}
+.v85-section-lock-mark>.icon{inline-size:25px;block-size:25px}
+.v85-section-dialog{max-inline-size:440px}
+.v85-section-challenge>p{line-height:1.7;text-align:center}
+@media(max-width:1024px){#content.v85-settings .v17-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#content.v85-settings .settings-menu{grid-template-columns:1fr}}
+@media(max-width:600px){
+ #content.v85-settings .v17-settings-grid{grid-template-columns:1fr;gap:1.15rem}
+ #content.v85-settings .settings-profile>button{padding:.75rem .85rem;min-height:70px}
+ #content.v85-settings .settings-link{min-height:66px;padding:.7rem .8rem}
+ #content.v85-settings .settings-link strong{font-size:.84rem}
+ #content.v85-settings .settings-link small{font-size:.72rem}
+ #content.v85-settings .settings-form .fields{grid-template-columns:1fr}
+ .v85-section-pin-row{flex-direction:column;align-items:flex-start;gap:.7rem}
+ .v85-section-pin-row .row{justify-content:flex-start;inline-size:100%}
+ .v85-section-pin-row button{font-size:.76rem;min-height:42px;padding:.6rem .75rem}
+ .v85-section-gate{padding:1.5rem 1rem}
+ .v85-section-gate>.row{flex-direction:column;align-items:stretch}
+ .v85-section-gate .segments{justify-content:center}
+}
+@media(max-width:760px){
+ #content.v85-settings .settings-form .settings-save{position:sticky;bottom:calc(var(--nav-height,88px) + env(safe-area-inset-bottom,0px) + 8px);z-index:12;margin-block-start:.5rem;padding:.7rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 16px #0000000a}
+ html[data-keyboard=true] #content.v85-settings .settings-form .settings-save{bottom:calc(100dvh - var(--interaction-height,100dvh) - var(--interaction-top,0px) + 8px)}
+ html[data-viewport-compact=true] #content.v85-settings .settings-form .settings-save{position:static}
+}

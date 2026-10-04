@@ -1,0 +1,53 @@
+/* Masarifi local calculations. No network, storage, learned model or currency conversion. */
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.MasarifiIntelligence=api;})(typeof globalThis==='undefined'?this:globalThis,function(){
+'use strict';
+const MAX=BigInt(Number.MAX_SAFE_INTEGER),fail=()=>{throw Error('invalidIntelligenceData');};
+const integer=n=>Number.isSafeInteger(n),currency=c=>typeof c==='string'&&/^[A-Z][A-Z0-9]{2,7}$/.test(c);
+function safe(n){n=BigInt(n);if(n>MAX||n< -MAX)throw Error('overflow');return Number(n);}
+const add=(a,b)=>safe(BigInt(a)+BigInt(b));
+function rounded(n,d){n=BigInt(n);d=BigInt(d);if(d<=0n)fail();const sign=n<0n?-1n:1n,a=n<0n?-n:n;return safe(sign*((a+d/2n)/d));}
+function basis(n,d){if(!d)return null;try{return rounded(BigInt(n)*10000n,BigInt(d));}catch(e){if(e.message==='overflow')return null;throw e;}}
+function validDay(s){if(typeof s!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;const y=+s.slice(0,4),m=+s.slice(5,7),d=+s.slice(8),leap=y%4===0&&(y%100!==0||y%400===0);return y>=1900&&m>=1&&m<=12&&d>=1&&d<=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31][m-1];}
+function shift(s,n){const d=new Date(s+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);const out=d.toISOString().slice(0,10);if(!validDay(out))fail();return out;}
+const stats=()=>({income:0,expense:0,net:0,count:0}),dues=()=>({overdue:0,next7:0,next30:0});
+const normalize=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
+function analyze(input={},options={}){
+ if(!input||typeof input!=='object'||Array.isArray(input)||!options||typeof options!=='object'||Array.isArray(options))fail();
+ const today=options.today,section=options.section||'personal';if(!validDay(today)||!['personal','work'].includes(section)||!Array.isArray(input.rows||[])||!Array.isArray(input.installments||[])||input.budgets!=null&&(typeof input.budgets!=='object'||Array.isArray(input.budgets)))fail();
+ const currentFrom=today.slice(0,7)+'-01',y=+today.slice(0,4),m=+today.slice(5,7),elapsed=+today.slice(8),monthDays=new Date(Date.UTC(y,m,0)).getUTCDate(),priorLast=new Date(Date.UTC(y,m-1,0)),priorMonth=priorLast.toISOString().slice(0,7),priorFrom=priorMonth+'-01',priorTo=priorMonth+'-'+String(Math.min(elapsed,priorLast.getUTCDate())).padStart(2,'0');
+ const monthWindows=Array.from({length:6},(_,index)=>{const month=new Date(Date.UTC(y,m-6+index,1)).toISOString().slice(0,7);return{month,complete:index<5};});
+ const period={from:currentFrom,to:today,priorFrom,priorTo,elapsedDays:elapsed,monthDays},map=new Map(),categories=new Map(),expenseDates=new Map(),unique=new Map();
+ const use=c=>{if(!map.has(c))map.set(c,{currency:c,current:stats(),prior:stats(),change:null,categories:[],budget:null,projection:null,history:monthWindows.map(window=>({...window,...stats()})),dues:{payable:dues(),receivable:dues()}});return map.get(c);};
+ const signature=row=>JSON.stringify([row.currency,row.type,row.minor,row.date,row.category||'',normalize(row.description),row.installmentPlanId||null,row.installmentDueId||null]);
+ const rows=[];for(const row of input.rows||[]){if(!row||row.section!==section)continue;if(typeof row.id!=='string'||!row.id||!currency(row.currency)||!['income','expense'].includes(row.type)||!integer(row.minor)||row.minor<=0||typeof row.date!=='string'||!validDay(row.date.slice(0,10)))fail();const identity=(row.synthetic?'synthetic:':'transaction:')+row.id;if(unique.has(identity)){if(signature(unique.get(identity))!==signature(row))fail();continue;}unique.set(identity,row);if(row.date.slice(0,10)<=today)rows.push(row);}
+ for(const r of rows){const month=r.date.slice(0,7);if(month<monthWindows[0].month||month>today.slice(0,7))continue;const h=use(r.currency).history.find(window=>window.month===month);h[r.type]=add(h[r.type],r.minor);h.net=add(h.income,-h.expense);h.count++;}
+ for(const r of rows){const date=r.date.slice(0,10),bucket=date>=currentFrom?'current':date>=priorFrom&&date<=priorTo?'prior':null;if(!bucket)continue;const c=use(r.currency),s=c[bucket];s[r.type]=add(s[r.type],r.minor);s.net=add(s.income,-s.expense);s.count++;
+  const category=typeof r.category==='string'?r.category:'',key=JSON.stringify([r.currency,r.type,category]);if(!categories.has(key))categories.set(key,{currency:r.currency,category,type:r.type,currentMinor:0,priorMinor:0,deltaMinor:0});const cat=categories.get(key);cat[bucket+'Minor']=add(cat[bucket+'Minor'],r.minor);
+  if(bucket==='current'&&r.type==='expense'){if(!expenseDates.has(r.currency))expenseDates.set(r.currency,new Set());expenseDates.get(r.currency).add(date);}
+ }
+ for(const [key,limit]of Object.entries(input.budgets||{})){if(!key.startsWith(section+':'))continue;const c=key.slice(section.length+1);if(!currency(c)||!integer(limit)||limit<0)fail();if(limit)use(c).budget={limitMinor:limit};}
+ const paid=new Map();for(const r of rows){if(!r.installmentPlanId)continue;const key=JSON.stringify([r.installmentPlanId,r.installmentDueId]),sum=paid.get(key)||{minor:0,currencies:new Set(),types:new Set()};sum.minor=add(sum.minor,r.minor);sum.currencies.add(r.currency);sum.types.add(r.type);paid.set(key,sum);}
+ const seenPlans=new Set(),end7=shift(today,6),end30=shift(today,29);
+ for(const p of input.installments||[]){if(!p||p.section!==section||p.status!=='active')continue;if(typeof p.id!=='string'||!p.id||seenPlans.has(p.id)||!currency(p.currency)||!['payable','receivable'].includes(p.direction)||!Array.isArray(p.schedule))fail();seenPlans.add(p.id);const seenDues=new Set();for(const d of p.schedule){if(!d||typeof d.id!=='string'||!d.id||seenDues.has(d.id)||!validDay(d.date)||!integer(d.minor)||d.minor<=0)fail();seenDues.add(d.id);const payment=paid.get(JSON.stringify([p.id,d.id]));if(payment&&([...payment.currencies].some(c=>c!==p.currency)||[...payment.types].some(type=>type!==(p.direction==='payable'?'expense':'income'))))fail();const remaining=Math.max(0,add(d.minor,-(payment?.minor||0)));if(!remaining)continue;const target=use(p.currency).dues[p.direction];if(d.date<today)target.overdue=add(target.overdue,remaining);else{if(d.date<=end7)target.next7=add(target.next7,remaining);if(d.date<=end30)target.next30=add(target.next30,remaining);}}}
+ for(const cat of categories.values()){cat.deltaMinor=add(cat.currentMinor,-cat.priorMinor);const {currency,...out}=cat;map.get(currency).categories.push(out);}
+ for(const c of map.values()){
+  c.change={incomeMinor:add(c.current.income,-c.prior.income),expenseMinor:add(c.current.expense,-c.prior.expense),incomeBasisPoints:basis(add(c.current.income,-c.prior.income),c.prior.income),expenseBasisPoints:basis(add(c.current.expense,-c.prior.expense),c.prior.expense)};
+  c.categories.sort((a,b)=>b.currentMinor-a.currentMinor||a.category.localeCompare(b.category)||a.type.localeCompare(b.type));
+  if(c.budget){const limit=c.budget.limitMinor,expected=rounded(BigInt(limit)*BigInt(elapsed),BigInt(monthDays));Object.assign(c.budget,{spentMinor:c.current.expense,remainingMinor:add(limit,-c.current.expense),expectedByTodayMinor:expected,usedBasisPoints:basis(c.current.expense,limit),pace:c.current.expense>expected?'over':'within'});}
+  c.projection={status:'insufficient',expenseMinor:null,remainingDays:monthDays-elapsed,assumption:'recorded-month-to-date-pace',reason:'insufficient-data'};
+  if(elapsed>=7&&(expenseDates.get(c.currency)?.size||0)>=3){try{Object.assign(c.projection,{status:'estimate',expenseMinor:rounded(BigInt(c.current.expense)*BigInt(monthDays),BigInt(elapsed)),reason:null});}catch(e){if(e.message!=='overflow')throw e;c.projection.reason='overflow';}}
+ }
+ const duplicateMap=new Map(),history=new Map(),currentExpenses=new Map(),duplicates=[],unusual=[],historyFrom=shift(today,-89);
+ const baselineKey=r=>{const category=r.category;return JSON.stringify([r.currency,typeof category==='string'?category:'']);};
+ for(const r of rows){if(r.synthetic||r.date.slice(0,10)<historyFrom)continue;const key=JSON.stringify([r.date.slice(0,10),r.type,r.currency,r.minor,normalize(r.description)]);if(!duplicateMap.has(key))duplicateMap.set(key,[]);duplicateMap.get(key).push(r);if(r.type==='expense'){const group=baselineKey(r);if(r.date.slice(0,10)<currentFrom){if(!history.has(group))history.set(group,[]);history.get(group).push(r.minor);}else{if(!currentExpenses.has(group))currentExpenses.set(group,[]);currentExpenses.get(group).push(r);}}}
+ for(const group of duplicateMap.values())if(group.length>1)duplicates.push({ids:group.map(r=>r.id),currency:group[0].currency,minor:group[0].minor,date:group[0].date.slice(0,10),reason:'same-day-amount-type-description'});
+ for(const [group,list]of history){if(list.length<5)continue;list.sort((a,b)=>a-b);const middle=Math.floor(list.length/2),numerator=list.length%2?BigInt(list[middle]):BigInt(list[middle-1])+BigInt(list[middle]),denominator=list.length%2?1n:2n,median=rounded(numerator,denominator);for(const r of currentExpenses.get(group)||[])if(BigInt(r.minor)*denominator>numerator*3n)unusual.push({id:r.id,currency:r.currency,minor:r.minor,baselineMinor:median,baselineCount:list.length,baselineScope:'same-currency-category',reason:'above-three-times-prior-median'});}
+ return{version:1,today,section,period,currencies:[...map.values()].sort((a,b)=>a.currency.localeCompare(b.currency)),review:{duplicates,unusual,suggestionsOnly:true}};
+}
+function sanitize(report){
+ if(report?.version!==1||!Array.isArray(report.currencies))fail();
+ const pick=(value,keys)=>Object.fromEntries(keys.map(k=>[k,value[k]]));
+ return{version:1,today:report.today,section:report.section,period:pick(report.period,['from','to','priorFrom','priorTo','elapsedDays','monthDays']),currencies:report.currencies.map(c=>({currency:c.currency,current:pick(c.current,['income','expense','net','count']),prior:pick(c.prior,['income','expense','net','count']),change:pick(c.change,['incomeMinor','expenseMinor','incomeBasisPoints','expenseBasisPoints']),categories:c.categories.map((x,index)=>({rank:index+1,type:x.type,currentMinor:x.currentMinor,priorMinor:x.priorMinor,deltaMinor:x.deltaMinor})),budget:c.budget?pick(c.budget,['limitMinor','spentMinor','remainingMinor','expectedByTodayMinor','usedBasisPoints','pace']):null,projection:pick(c.projection,['status','expenseMinor','remainingDays','assumption','reason']),dues:{payable:pick(c.dues.payable,['overdue','next7','next30']),receivable:pick(c.dues.receivable,['overdue','next7','next30'])}})),review:{possibleDuplicateGroups:report.review.duplicates.length,unusualExpenses:report.review.unusual.length,suggestionsOnly:true},scope:'recorded-transactions-and-confirmed-installments',conversion:'none'};
+}
+return{analyze,sanitize,validDay};
+});

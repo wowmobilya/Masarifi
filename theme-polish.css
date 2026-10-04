@@ -1,0 +1,348 @@
+/* Masarifi 8.5 appearance. Load after every existing stylesheet.
+   Keeps light-mode branding; dark-mode accents and shared-workspace cards are neutral. */
+html[data-theme="dark"] .home-overview .home-overview-card {
+  --overview-bg: #202326;
+  --overview-ink: #e5e8ec;
+  --overview-line: #41474d;
+  --overview-glow: #aeb7c5;
+}
+html[data-theme="dark"] .home-overview .home-overview-currency {
+  background: var(--panel2);
+  color: var(--text);
+}
+html[data-theme="dark"] .home-overview .home-overview-mark {
+  background: #ffffff0a;
+}
+:root {
+  --online-panel: #fff;
+  --online-soft: #f3f4f5;
+  --online-line: #d8dcdf;
+  --online-accent: #3a4148;
+  --online-on-accent: #fff;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101112;
+  --panel: #191b1d;
+  --panel2: #25282b;
+  --text: #f2f3f4;
+  --muted: #b5b9bf;
+  --line: #41464b;
+  --accent: #d8dde3;
+  --accent-soft: #2c3035;
+  --income: #d8dde3;
+  --expense: #ffaaa7;
+  --red-soft: #3d292b;
+  --shadow: 0 5px 22px #00000018;
+  /* Shared modules use these aliases as well as the ledger tokens. */
+  --surface: var(--panel);
+  --ink: var(--text);
+  --border: var(--line);
+  --green: var(--accent);
+  --danger: var(--expense);
+  --mx-bg: var(--panel);
+  --mx-text: var(--text);
+  --mx-muted: var(--muted);
+  --mx-line: var(--line);
+  --mx-soft: var(--panel2);
+  --mx-accent: var(--accent);
+  --mx-shadow: 0 28px 90px #0008;
+  --online-panel: var(--panel);
+  --online-soft: var(--panel2);
+  --online-line: var(--line);
+  --online-accent: var(--accent);
+  --online-on-accent: var(--bg);
+}
+
+/* Explicit colors from older styles must follow the current dark tokens. */
+html[data-theme="dark"] .primary,
+html[data-theme="dark"] .mx-dialog .mx-primary,
+html[data-theme="dark"] .v16-chat-preview > .btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  box-shadow: none;
+}
+html[data-theme="dark"] .cashbox-card[data-slot] {
+  --account-accent: var(--accent);
+  --box-accent: var(--accent);
+}
+html[data-theme="dark"] .balance-card,
+html[data-theme="dark"] .v7-bank-card,
+html[data-theme="dark"] .v17-home .v7-bank-card,
+html[data-theme="dark"] .v17-home .v7-bank-card[data-slot] {
+  background: linear-gradient(115deg, #303439, #202326);
+  color: var(--text);
+  border-color: #4c535b !important;
+  box-shadow: 0 8px 22px #00000018 !important;
+}
+html[data-theme="dark"] .v17-home .v7-card-brand,
+html[data-theme="dark"] .v17-home .v7-card-caption,
+html[data-theme="dark"] .v17-home .v7-card-date,
+html[data-theme="dark"] .v17-home .v7-card-art {
+  color: #c5cbd2;
+}
+html[data-theme="dark"] .v21-share-box {
+  border-color: #ffffff55 !important;
+}
+html[data-theme="dark"] .connection i,
+html[data-theme="dark"] .local-dot {
+  background: var(--accent);
+}
+html[data-theme="dark"] .welcome-banner {
+  background: var(--panel2);
+  color: var(--text);
+  border-color: var(--line);
+}
+html[data-theme="dark"] .welcome-banner::before {
+  border-color: #ffffff18;
+}
+html[data-theme="dark"] .welcome-banner .eyebrow,
+html[data-theme="dark"] .welcome-banner p,
+html[data-theme="dark"] .title-dot {
+  color: var(--muted);
+}
+html[data-theme="dark"] .bank-quick button {
+  background: var(--panel);
+  border-color: var(--line);
+  color: var(--text);
+}
+html[data-theme="dark"] .bank-quick .primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+html[data-theme="dark"] .v10-message {
+  border-color: var(--line);
+  border-inline-start-color: var(--accent);
+}
+html[data-theme="dark"] .v13-access-mark {
+  background: var(--panel2);
+}
+html[data-theme="dark"] .v14-receipt video,
+html[data-theme="dark"] #v17Scanner .v17-scan-view {
+  background: #101112;
+}
+html[data-theme="dark"] #v17Scanner .v17-scan-view button {
+  background: #191b1dee;
+}
+html[data-theme="dark"] #v17Scanner .v17-scan-reticle {
+  border-color: #d8dde3;
+  box-shadow: 0 0 0 100vmax #00000055, inset 0 0 22px #ffffff0d;
+}
+html[data-theme="dark"] #v17Scanner .v17-scan-reticle::before {
+  background: linear-gradient(90deg, transparent, #d8dde3 20%, #fff 50%, #d8dde3 80%, transparent);
+  box-shadow: 0 4px 22px 3px #ffffff28;
+}
+html[data-theme="dark"] .v22-kind.receivable,
+html[data-theme="dark"] .v22-status.done {
+  background: var(--panel2);
+  color: var(--income);
+}
+html[data-theme="dark"] .cashbox-card:hover,
+html[data-theme="dark"] .home-shortcuts button:hover,
+html[data-theme="dark"] .home-customize:hover,
+html[data-theme="dark"] .v5-lock-box {
+  box-shadow: 0 8px 26px #00000020;
+}
+html[data-theme="dark"] .mx-dialog::backdrop {
+  background: #00000070;
+}
+html[data-theme="dark"] .mx-update-banner {
+  box-shadow: 0 10px 40px #0005;
+}
+
+/* Home uses a normal selected label, with no colored halo behind its icon. */
+#mobileNav.v17-dock .v16-item[data-v16-slot="home"].active {
+  background: transparent;
+  color: var(--text);
+  box-shadow: none;
+}
+#mobileNav.v17-dock .v16-item[data-v16-slot="home"] .v16-icon {
+  background: transparent;
+  box-shadow: none;
+  filter: none;
+}
+html[data-theme="dark"] #mobileNav.v16-dock {
+  box-shadow: 0 7px 26px #00000028;
+}
+html[data-theme="dark"] #mobileNav.v16-dock .v16-add .v16-icon {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: none;
+}
+
+/* Keep the existing tile dimensions. Its QR uses the whole inner square,
+   retains the SVG's quiet zone, and is always black on standard white. */
+.v17-home .v20-home-share .v20-home-qr {
+  padding: 3px;
+  background: #fff;
+  color: #000;
+  border-color: #d3d6d9;
+  box-shadow: none;
+}
+.v17-home .v20-home-share .v20-home-qr > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1;
+  color: #000;
+  fill: #000;
+  stroke: none;
+  flex: 1 1 auto;
+}
+.v17-home .v20-home-share .v20-home-qr:hover {
+  background: #fff;
+  color: #000;
+  border-color: #8c9299;
+}
+.v17-home .v20-home-share .v20-home-qr:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Shared cashboxes and connectivity form one calm, readable card family.
+   Scope these tokens to actual online/status hooks, never warning/error hooks. */
+.v9,
+.v13-access-card,
+.family-status {
+  --accent: var(--online-accent);
+  --accent-soft: var(--online-soft);
+  --border: var(--online-line);
+  --v9-accent: var(--online-accent);
+  --v9-soft: var(--online-soft);
+}
+html[data-theme="dark"] .v9 {
+  --v9-accent: var(--online-accent);
+  --v9-soft: var(--online-soft);
+}
+.v9.stack {
+  gap: 18px;
+}
+.v9 .v9-hero,
+html[data-theme="dark"] .v9 .v9-hero {
+  background: var(--online-panel);
+  color: var(--text);
+  border: 1px solid var(--online-line);
+  border-radius: 20px;
+  padding: clamp(18px, 4vw, 26px);
+}
+.v9-eyebrow {
+  color: var(--muted);
+  letter-spacing: .12em;
+}
+.v9 .v9-hero h2 {
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.v9 .v9-hero p {
+  margin-block: 10px 18px;
+  line-height: 1.75;
+}
+.v9 .v9-hero > .row {
+  gap: 10px;
+}
+.v9 .v9-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 20px;
+  background: var(--online-panel);
+  border-color: var(--online-line);
+}
+.v9 .v9-box h3,
+.v9 .v9-box p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.v9 .v9-box > button {
+  margin-block-start: auto;
+  max-width: 100%;
+}
+.v9 .v9-list-row {
+  gap: 12px 16px;
+  padding-block: 16px;
+  border-color: var(--online-line);
+}
+.v9 .v9-list-row > span {
+  min-width: 0;
+  flex: 1 1 190px;
+  overflow-wrap: anywhere;
+}
+.v9 .v9-list-row small {
+  display: block;
+  margin-block-start: 5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.v9 .v9-list-row > bdi,
+.v9-balance,
+.v13-limits strong {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.v9 .v9-list-row > bdi {
+  font-weight: 700;
+  max-width: 100%;
+}
+.v9 .primary,
+html[data-theme="dark"] .v9 .primary {
+  background: var(--online-accent);
+  border-color: var(--online-accent);
+  color: var(--online-on-accent);
+  box-shadow: none;
+}
+.v13-access-card,
+.family-status {
+  background: var(--online-panel);
+  border-color: var(--online-line);
+  box-shadow: none;
+}
+.v13-access-card .v13-access-mark {
+  background: var(--online-soft);
+}
+.family-status-main > div,
+.v17-connection-summary > strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.family-connection[data-state="ready"]::before {
+  background: var(--online-accent);
+}
+.family-rights dd[data-allowed="true"] {
+  color: var(--online-accent);
+}
+.v13-limits > div {
+  background: var(--online-soft);
+  border: 1px solid var(--online-line);
+  min-width: min(160px, 100%);
+  padding: 14px;
+}
+.v13-limits small {
+  line-height: 1.6;
+  margin-block-end: 6px;
+}
+.v17-connection-summary {
+  background: var(--online-panel);
+  gap: 16px;
+}
+.v17-connection-summary .icon {
+  color: var(--muted);
+}
+.v18-sync-card {
+  background: var(--panel);
+}
+.v18-sync-card dl {
+  gap: 16px;
+}
+.v18-sync-card dt {
+  line-height: 1.65;
+}
+.v22-connection-details {
+  background: var(--panel);
+}

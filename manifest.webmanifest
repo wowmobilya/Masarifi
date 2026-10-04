@@ -1,0 +1,34 @@
+{
+  "id": "./",
+  "name": "مصاريفي",
+  "short_name": "مصاريفي",
+  "description": "مصروفاتك وصناديقك وتقاريرك، متاحة دون اتصال.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./?lang=ar",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f3f7f6",
+  "theme_color": "#f3f7f6",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
